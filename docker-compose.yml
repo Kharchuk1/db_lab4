@@ -1,0 +1,28 @@
+services:
+  app:
+    build: ./app/
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+      - cache
+  db:
+    image: postgres:14.1
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+  cache:
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+  
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'

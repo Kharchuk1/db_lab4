@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Query {% endblock %}
+
+{% block content %}
+<form method="post">
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input class="form-control" id="year" name="year">
+    </div>
+    <div class="form-group">
+        <label for="location">Location</label>
+        <select id="location" name="location_id" class="form-select">
+            <option value="">All</option>
+            {% for option in options.location %}
+            <option value="{{ option.id }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject_id" class="form-select">
+            <option value="">All</option>
+            {% for option in options.subject %}
+            <option value="{{ option.id }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Query</button>
+    </div>
+</form>
+{% endblock %}

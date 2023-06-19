@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Students {% endblock %}
+
+{% block content %}
+<a type="button" class="btn btn-primary" href="{{ url_for('student.student_add') }}">Add student</a>
+<table class="table">
+    <thead>
+        <tr>
+            {% for column in columns %}
+                <th scope="col">{{column}}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+            <tr>
+                {% for column in columns %}
+                    <td>
+                      <a href="{{ url_for('student.student', uuid=student['outid']) }}">
+                        {{ student[column] }}
+                      </a>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
